@@ -7,8 +7,8 @@ st.markdown(
     """
     <style>
     body {
-        background-color: #00008B;
-        color: white;
+        background-color: #00008F;
+        color: blue;
     }
     .centered {
         display: flex;
