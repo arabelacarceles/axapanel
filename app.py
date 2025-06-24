@@ -1,22 +1,22 @@
 import streamlit as st
 
-st.set_page_config(page_title="AXA Tech Graduate Program", layout="centered")
+st.set_page_config(
+    page_title="AXA Tech Graduate Program",
+    layout="centered"
+)
 
-# Estilo global
+# Estilo general
 st.markdown("""
     <style>
-        body {
+        .main {
             background-color: #00008B;
         }
-        .main {
-            background-color: #00008B !important;
-        }
-        .logo {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 150px;
-            margin-top: 60px;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 60px;
         }
         .title {
             text-align: center;
@@ -28,6 +28,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Cuerpo de la página
-st.markdown(f'<img src="images/logo.png" class="logo">', unsafe_allow_html=True)
+# Fondo azul en toda la app
+st.markdown('<div class="container">', unsafe_allow_html=True)
+
+# Imagen del logo (correctamente referenciada desde carpeta)
+st.image("images/logo.png", width=150)
+
+# Título
 st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
