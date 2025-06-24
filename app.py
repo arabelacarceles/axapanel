@@ -1,32 +1,32 @@
 import streamlit as st
 
-st.set_page_config(page_title="Inicio", layout="centered")
+st.set_page_config(page_title="AXA Tech Graduate Program", layout="centered")
 
-# CSS: fondo azul, sin forzar altura fija
+# Fondo azul oscuro
 st.markdown(
     """
     <style>
-    [data-testid="stAppViewContainer"] {
+    .main {
         background-color: #00008B;
-    }
-    .centered {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 10vh;
-    }
-    h1 {
         color: white;
-        font-size: 2.5em;
-        margin-top: 2vh;
+        text-align: center;
+        padding-top: 50px;
+    }
+    img {
+        max-width: 300px;
+        margin-bottom: 30px;
+    }
+    .title {
+        font-size: 32px;
+        font-weight: bold;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Contenido centrado
-st.markdown('<div class="centered">', unsafe_allow_html=True)
-st.image("images/logo.png", width=300)
-st.markdown("<h1 style='color: white;'>TECH GRADUATE PROGRAM</h1>", unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+with st.container():
+    st.markdown('<div class="main">', unsafe_allow_html=True)
+    st.image("images/logo.png.png")
+    st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
