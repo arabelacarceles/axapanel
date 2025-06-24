@@ -9,7 +9,7 @@ st.markdown("""
         background-color: white;
     }
     h1 {
-        color: #00008f;
+        color: #00008f !important;
         font-size: 4em;
         font-weight: bold;
         margin-bottom: 40px;
