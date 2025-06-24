@@ -2,39 +2,41 @@ import streamlit as st
 
 st.set_page_config(
     page_title="AXA Tech Graduate Program",
-    layout="centered"
+    layout="wide"
 )
 
-# Estilo general
+# CSS para fondo azul, centrado absoluto, imagen y texto
 st.markdown("""
     <style>
-        .main {
-            background-color: #00008B;
+        html, body, [class*="css"]  {
+            background-color: #00008B !important;
+            height: 100%;
+            margin: 0;
         }
-        .container {
+        .centered-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding-top: 60px;
+            align-items: center;
+            height: 100vh;
         }
-        .title {
-            text-align: center;
+        .logo-img {
+            max-width: 200px;
+            height: auto;
+        }
+        .title-text {
             color: white;
             font-size: 36px;
             font-weight: bold;
-            margin-top: 30px;
+            margin-top: 20px;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Fondo azul en toda la app
-st.markdown('<div class="container">', unsafe_allow_html=True)
-
-# Imagen del logo (correctamente referenciada desde carpeta)
-st.image("images/logo.png", width=150)
-
-# Título
-st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
+# HTML + Streamlit para insertar contenido centrado
+st.markdown(f"""
+    <div class="centered-container">
+        <img src="https://github.com/arabelacarceles/axapanel/blob/main/images/logo.png" class="logo-img">
+        <div class="title-text">TECH GRADUATE PROGRAM</div>
+    </div>
+""", unsafe_allow_html=True)
