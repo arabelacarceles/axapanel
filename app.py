@@ -18,7 +18,7 @@ st.markdown("""
         margin-bottom: 1rem;
     }
     .left-content {
-        margin-top: 8vh;
+        margin-top: 4vh;
     }
     </style>
 """, unsafe_allow_html=True)
