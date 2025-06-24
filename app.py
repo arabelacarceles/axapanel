@@ -19,6 +19,9 @@ st.markdown("""
     }
     .left-content {
         margin-top: 4vh;
+        color: #00008f !important;
+        font-weight: bold !important;
+        border: 2px solid #00008f !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -29,9 +32,9 @@ col1, col2 = st.columns([2, 1], gap="large")
 with col1:
     st.markdown('<div class="left-content">', unsafe_allow_html=True)
     st.markdown("<h1>TECH GRADUATE PROGRAM</h1>", unsafe_allow_html=True)
-    st.button("Sobre mí")
-    st.button("Resolución del caso")
-    st.button("Conclusiones")
+    st.button("🙋 Sobre mí")
+    st.button("🧩 Resolución del caso")
+    st.button("✅ Conclusiones")
     st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
