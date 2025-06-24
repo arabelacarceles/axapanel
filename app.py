@@ -35,7 +35,8 @@ col1, col2 = st.columns([2, 1], gap="large")
 with col1:
     st.markdown('<div class="left-content">', unsafe_allow_html=True)
     st.markdown("<h1>TECH GRADUATE PROGRAM</h1>", unsafe_allow_html=True)
-    st.button("🙋 Sobre mí")
+    if st.button("🙋 Sobre mí"):
+        st.session_state.page = "sobre_mi"
     st.button("🧩 Resolución del caso")
     st.button("✅ Conclusiones")
     st.markdown('</div>', unsafe_allow_html=True)
