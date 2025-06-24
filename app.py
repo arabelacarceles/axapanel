@@ -2,6 +2,9 @@ import streamlit as st
 
 st.set_page_config(page_title="Inicio", layout="wide")
 
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
 # Fondo blanco y estilos
 st.markdown("""
     <style>
