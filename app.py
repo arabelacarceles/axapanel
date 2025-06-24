@@ -27,6 +27,6 @@ st.markdown(
 
 with st.container():
     st.markdown('<div class="main">', unsafe_allow_html=True)
-    st.image("images/logo.png.png")
+    st.image("images/logo.png")
     st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
