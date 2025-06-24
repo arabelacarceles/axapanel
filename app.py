@@ -2,34 +2,44 @@ import streamlit as st
 
 st.set_page_config(page_title="Inicio", layout="wide")
 
-# Fondo blanco y estilo general
+st.logo("images/logo.png", size="large")
+
+# CSS para centrar absolutamente todo sin columnas
 st.markdown("""
     <style>
     [data-testid="stAppViewContainer"] {
         background-color: white;
     }
-    h1 {
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 10vh;
+    }
+    .main-content h1 {
         color: #00008B;
-        font-size: 4em;
+        font-size: 3.5em;
         font-weight: bold;
         margin-bottom: 40px;
     }
-    .stButton>button {
-        margin-bottom: 1rem;
+    .button-group {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Dos columnas: contenido izquierda / logo derecha
-col1, col2 = st.columns([2, 1], gap="large")
+# HTML layout: centrado total
+st.markdown('<div class="main-content">', unsafe_allow_html=True)
+st.markdown('<h1>TECH GRADUATE PROGRAM</h1>', unsafe_allow_html=True)
 
-with col1:
-    st.markdown("###")
-    st.markdown("###")
-    st.markdown("<h1>TECH GRADUATE PROGRAM</h1>", unsafe_allow_html=True)
-    st.button("Sobre mí")
-    st.button("Resolución del caso")
-    st.button("Conclusiones")
-
-with col2:
-    st.image("images/logo.png", use_container_width=True)
+# Botones sin columnas, centrados con flex
+st.markdown('<div class="button-group">', unsafe_allow_html=True)
+sobre_mi = st.button("Sobre mí")
+resolucion = st.button("Resolución del caso")
+conclusiones = st.button("Conclusiones")
+st.markdown('</div></div>', unsafe_allow_html=True)
