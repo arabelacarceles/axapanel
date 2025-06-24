@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Inicio", layout="centered")
 
-# CSS para fondo azul total
+# CSS: fondo azul, sin forzar altura fija
 st.markdown(
     """
     <style>
@@ -12,9 +12,13 @@ st.markdown(
     .centered {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        height: 100vh;
+        padding-top: 10vh;
+    }
+    h1 {
+        color: white;
+        font-size: 2.5em;
+        margin-top: 2vh;
     }
     </style>
     """,
