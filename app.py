@@ -5,11 +5,15 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS para fondo y estilo centrado
+logo_url = "https://raw.githubusercontent.com/arabelacarceles/axapanel/main/images/logo.png"
+
+# Estilo para fondo y centrado
 st.markdown("""
     <style>
-        body {
-            background-color: #00008B;
+        html, body, [class*="css"] {
+            background-color: #00008B !important;
+            height: 100%;
+            margin: 0;
         }
         .container {
             display: flex;
@@ -17,10 +21,6 @@ st.markdown("""
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
-        .logo {
-            width: 100px;
-            height: auto;
         }
         .title {
             color: white;
@@ -31,10 +31,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Contenido principal
-st.markdown("""
-    <div class="container">
-        <img class="logo" src="https://raw.githubusercontent.com/arabelacarceles/axapanel/main/images/logo.png">
-        <div class="title">TECH GRADUATE PROGRAM</div>
-    </div>
-""", unsafe_allow_html=True)
+# HTML+Streamlit render
+st.markdown('<div class="container">', unsafe_allow_html=True)
+st.image(logo_url, width=100)
+st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
