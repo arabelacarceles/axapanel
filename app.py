@@ -71,7 +71,7 @@ if st.session_state.page == "home":
 
 # SOBRE MÍ PAGE
 elif st.session_state.page == "sobre_mi":
-    st.markdown('<img src="images/logo.png" class="top-right-logo" width="70">', unsafe_allow_html=True)
+    st.logo("images/logo.png", size="large")
 
     st.markdown('<div class="nav-buttons">', unsafe_allow_html=True)
     nav_button("🙋 Sobre mí", "sobre_mi", key="nav1")
