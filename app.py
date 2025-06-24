@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Inicio", layout="center")
+st.set_page_config(page_title="Inicio", layout="centered")
 
 # CSS para fondo azul total
 st.markdown(
