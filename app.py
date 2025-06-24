@@ -36,7 +36,7 @@ st.markdown("""
 # HTML + Streamlit para insertar contenido centrado
 st.markdown(f"""
     <div class="centered-container">
-        <img src="https://github.com/arabelacarceles/axapanel/blob/main/images/logo.png" class="logo-img">
+        <img src="https://raw.githubusercontent.com/arabelacarceles/axapanel/main/images/logo.png" class="logo-img">
         <div class="title-text">TECH GRADUATE PROGRAM</div>
     </div>
 """, unsafe_allow_html=True)
