@@ -2,31 +2,32 @@ import streamlit as st
 
 st.set_page_config(page_title="AXA Tech Graduate Program", layout="centered")
 
-# Fondo azul oscuro
-st.markdown(
-    """
+# Estilo global
+st.markdown("""
     <style>
-    .main {
-        background-color: #00008B;
-        color: white;
-        text-align: center;
-        padding-top: 50px;
-    }
-    img {
-        max-width: 300px;
-        margin-bottom: 30px;
-    }
-    .title {
-        font-size: 32px;
-        font-weight: bold;
-    }
+        body {
+            background-color: #00008B;
+        }
+        .main {
+            background-color: #00008B !important;
+        }
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 150px;
+            margin-top: 60px;
+        }
+        .title {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
-with st.container():
-    st.markdown('<div class="main">', unsafe_allow_html=True)
-    st.image("images/logo.png")
-    st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+# Cuerpo de la página
+st.markdown(f'<img src="images/logo.png" class="logo">', unsafe_allow_html=True)
+st.markdown('<div class="title">TECH GRADUATE PROGRAM</div>', unsafe_allow_html=True)
