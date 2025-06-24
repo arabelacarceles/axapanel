@@ -2,13 +2,12 @@ import streamlit as st
 
 st.set_page_config(page_title="Inicio", layout="wide")
 
-# Fondo azul y centrado vertical
+# CSS para fondo azul total
 st.markdown(
     """
     <style>
-    body {
-        background-color: #00008F;
-        color: blue;
+    [data-testid="stAppViewContainer"] {
+        background-color: #00008B;
     }
     .centered {
         display: flex;
@@ -22,7 +21,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Contenido
+# Contenido centrado
 st.markdown('<div class="centered">', unsafe_allow_html=True)
 st.image("images/logo.png", width=300)
 st.markdown("<h1 style='color: white;'>TECH GRADUATE PROGRAM</h1>", unsafe_allow_html=True)
