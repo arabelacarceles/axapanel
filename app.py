@@ -2,16 +2,14 @@ import streamlit as st
 
 st.set_page_config(page_title="AXA Panel", layout="wide")
 
-# Estado de la navegación
+# Estado de navegación
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
-# Función para botón de navegación (reutilizable)
-def nav_button(label, target, key):
-    if st.button(label, key=key):
-        st.session_state.page = target
+# Mostrar el logo en la cabecera
+st.logo("images/logo.png", size="large")
 
-# Estilos comunes
+# Estilos CSS personalizados
 st.markdown("""
     <style>
     [data-testid="stAppViewContainer"] {
@@ -31,11 +29,6 @@ st.markdown("""
     }
     .left-content {
         margin-top: 4vh;
-    }
-    .top-right-logo {
-        position: absolute;
-        top: 20px;
-        right: 40px;
     }
     .nav-buttons {
         display: flex;
@@ -62,24 +55,44 @@ if st.session_state.page == "home":
         st.markdown("<h1>TECH GRADUATE PROGRAM</h1>", unsafe_allow_html=True)
         if st.button("🙋 Sobre mí"):
             st.session_state.page = "sobre_mi"
-        st.button("🧩 Resolución del caso")
-        st.button("✅ Conclusiones")
+        if st.button("🧩 Resolución del caso"):
+            st.session_state.page = "resolucion"
+        if st.button("✅ Conclusiones"):
+            st.session_state.page = "conclusiones"
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col2:
-        st.image("images/logo.png", use_container_width=True)
+        pass  # el logo ya está en la cabecera con st.logo
 
-# SOBRE MÍ PAGE
-elif st.session_state.page == "sobre_mi":
-    st.logo("images/logo.png", size="large")
-
+# NAVIGATION BAR (reutilizable en todas páginas)
+def nav_bar():
     st.markdown('<div class="nav-buttons">', unsafe_allow_html=True)
-    nav_button("🙋 Sobre mí", "sobre_mi", key="nav1")
-    nav_button("🧩 Resolución del caso", "resolucion", key="nav2")
-    nav_button("✅ Conclusiones", "conclusiones", key="nav3")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("🙋 Sobre mí"):
+            st.session_state.page = "sobre_mi"
+    with col2:
+        if st.button("🧩 Resolución del caso"):
+            st.session_state.page = "resolucion"
+    with col3:
+        if st.button("✅ Conclusiones"):
+            st.session_state.page = "conclusiones"
     st.markdown('</div>', unsafe_allow_html=True)
 
+# SOBRE MÍ
+if st.session_state.page == "sobre_mi":
+    nav_bar()
     st.write("### 👋 ¡Hola! Soy [tu nombre], participante del AXA Tech Graduate Program...")
     st.write("Aquí puedes contar tu perfil, intereses, formación o lo que te apetezca destacar.")
 
-# Puedes seguir creando más elif para "resolucion", "conclusiones", etc.
+# RESOLUCIÓN DEL CASO
+elif st.session_state.page == "resolucion":
+    nav_bar()
+    st.write("### 🧩 Resolución del caso")
+    st.write("Aquí puedes desarrollar tu análisis, mostrar gráficos, texto o resultados...")
+
+# CONCLUSIONES
+elif st.session_state.page == "conclusiones":
+    nav_bar()
+    st.write("### ✅ Conclusiones")
+    st.write("Aquí puedes cerrar tu presentación con los puntos clave o aprendizajes finales.")
