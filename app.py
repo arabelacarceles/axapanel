@@ -217,10 +217,6 @@ elif st.session_state.page == "presupuesto":
 - Desarrollo principal externalizado → velocidad.
 - Mantenimiento tras MVP → equipo interno.
 
-✅ **Coste total estimado**
-
-- Pulsa el botón para calcular el presupuesto.
-
 ✅ **Equipo mínimo**
 
 - Internos: PM, Solution Architect.
