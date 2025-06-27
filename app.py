@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.figure_factory as ff
+import graphviz as gv
 
 st.set_page_config(page_title="AXA Panel", layout="wide")
 
@@ -53,35 +54,35 @@ def nav_bar(current):
         if current == "home":
             st.markdown("**Home**")
         else:
-            if st.button(" Home", key=f"{current}_home"):
+            if st.button(" Home", key=f"nav_{current}_home"):
                 st.session_state.page = "home"
 
     with col2:
         if current == "sobre_mi":
             st.markdown("**Sobre mí**")
         else:
-            if st.button(" Sobre mí", key=f"{current}_sobre_mi"):
+            if st.button(" Sobre mí", key=f"nav_{current}_sobre_mi"):
                 st.session_state.page = "sobre_mi"
 
     with col3:
         if current == "desarrollo":
             st.markdown("**Desarrollo**")
         else:
-            if st.button(" Desarrollo", key=f"{current}_desarrollo"):
+            if st.button(" Desarrollo", key=f"nav_{current}_desarrollo"):
                 st.session_state.page = "desarrollo"
 
     with col4:
         if current == "aplicacion":
             st.markdown("**Aplicación**")
         else:
-            if st.button(" Aplicación", key=f"{current}_aplicacion"):
+            if st.button(" Aplicación", key=f"nav_{current}_aplicacion"):
                 st.session_state.page = "aplicacion"
 
     with col5:
         if current == "presupuesto":
             st.markdown("**Presupuesto**")
         else:
-            if st.button(" Presupuesto", key=f"{current}_presupuesto"):
+            if st.button(" Presupuesto", key=f"nav_{current}_presupuesto"):
                 st.session_state.page = "presupuesto"
 
 # HOME
@@ -138,7 +139,6 @@ elif st.session_state.page == "desarrollo":
         st.write("#### 🛠️ Diseño funcional")
         st.write("A continuación se muestra el flujo inicial del prototipo con las pantallas clave:")
 
-        # Pantalla de bienvenida con subtítulo
         st.markdown("##### Pantalla de bienvenida")
         st.image("images/welcomePage.png", caption="Pantalla de bienvenida (Soy cliente / Entrar como invitado)", width=200)
 
@@ -169,14 +169,33 @@ elif st.session_state.page == "desarrollo":
             - Acceso directo a funcionalidades limitadas.
         """)
 
-
     elif opcion == "Desarrollo backend":
         st.write("#### 🖥️ Desarrollo backend")
-        st.write("""
-            - Aquí detallas cómo implementaste la lógica del servidor: lenguaje, framework (Flask), endpoints clave y su funcionalidad.
-            - Por ejemplo, la gestión de citas, el cálculo de puntos, el manejo del modal con sesión y la integración con la demo.
-            - Puedes incluir fragmentos de código o flujos de datos.
-        """)
+        st.write("A continuación se muestra un diagrama simplificado de la arquitectura propuesta:")
+
+        diagram = gv.Digraph(format='png')
+        diagram.attr(rankdir='TB', size='8,5')
+
+        diagram.node('App', '📱 App móvil\nFlutter (Android/iOS)', shape='box', style='filled', color='lightblue')
+        diagram.node('API', '🌐 API Gateway', shape='box', style='filled', color='lightskyblue')
+        diagram.node('Micro', '🧩 Microservicios Backend', shape='box', style='filled', color='lightcyan')
+        diagram.node('Gest', '👤 Gestión Clientes\nDB Relacional', shape='box')
+        diagram.node('IA', '🤖 Diagnóstico IA\n📷 CV & 💬 NLP', shape='box')
+        diagram.node('Sin', '📝 Siniestros', shape='box')
+        diagram.node('Noti', '🔔 Notificaciones', shape='box')
+        diagram.node('DBRel', '🗃️ DB Relacional', shape='box', style='filled', color='lightgreen')
+        diagram.node('DBNoSQL', '📂 DB NoSQL', shape='box', style='filled', color='lightgreen')
+        diagram.node('Cloud', '☁️ Infraestructura Cloud\n🐳 Docker + ☸️ Kubernetes', shape='box', style='filled', color='lightgrey')
+
+        diagram.edges([('App', 'API'), ('API', 'Micro')])
+        diagram.edges([('Micro', 'Gest'), ('Micro', 'IA'), ('Micro', 'Sin'), ('Micro', 'Noti')])
+        diagram.edge('Gest', 'DBRel')
+        diagram.edge('IA', 'DBNoSQL')
+        diagram.edge('Micro', 'Cloud')
+        diagram.edge('Cloud', 'DBRel')
+        diagram.edge('Cloud', 'DBNoSQL')
+
+        st.graphviz_chart(diagram)
 
 # APLICACIÓN
 elif st.session_state.page == "aplicacion":
@@ -193,53 +212,43 @@ elif st.session_state.page == "presupuesto":
     st.write("### Presupuesto y calendario de desarrollo")
 
     st.markdown("""
-    #### 🔹 Estrategia de desarrollo
+✅ **Estrategia de desarrollo**
 
-    - Externalizar el desarrollo principal para agilizar plazos.
-    - Internalizar el mantenimiento y evolución tras el MVP.
+- Desarrollo principal externalizado → velocidad.
+- Mantenimiento tras MVP → equipo interno.
 
-    #### 🔹 Costes estimados
+✅ **Coste total estimado**
 
-    - **Desarrollo:**
-        • Personal interno: 20,000 €
-        • Personal externo: 42,000 €
-        • Total desarrollo: 62,000 €
+- Pulsa el botón para calcular el presupuesto.
 
-    - **Infraestructura anual:**
-        • Servidor + BBDD: 7,000 €
+✅ **Equipo mínimo**
 
+- Internos: PM, Solution Architect.
+- Externos: 2 devs móviles, UI/UX, QA.
 
-    #### 🔹 Equipo mínimo
+✅ **Recursos clave**
 
-    - Internos: Project Manager, Solution Architect
-    - Externos: 2 desarrolladores móviles, diseñador UI/UX, QA Tester
+- Dispositivos Android/iOS.
+- Herramientas: Figma, Android Studio, Xcode, Jenkins/GitHub Actions.
 
-    #### 🔹 Recursos necesarios
+✅ **Principales riesgos y mitigaciones**
 
-    - Ordenadores potentes, dispositivos Android/iOS, herramientas como Figma, Android Studio, Xcode y CI/CD (Jenkins, GitHub Actions).
-
-    #### 🔹 Principales riesgos y mitigaciones
-
-    - Integración APIs: mitigada con pruebas y documentación anticipada.
-    - Transferencia de conocimiento: handover planificado con formación.
-    - Seguridad y RGPD: autenticación biométrica, cifrado, NDA y políticas de privacidad.
-    - Baja adopción: mitigada con MVP para validar interés real.
-    - Cambios en requisitos: reuniones semanales con stakeholders.
-    """)
+- Integración APIs: pruebas y docs anticipadas.
+- Transferencia conocimiento: handover + formación.
+- Seguridad/RGPD: biometría, cifrado, NDA.
+- Baja adopción: validar con MVP.
+- Cambios requisitos: reuniones semanales.
+""")
 
     if st.button("💰 Calcular presupuesto final"):
         st.success("✅ El coste total estimado del proyecto es de **69,000 €**")
-
-    import plotly.figure_factory as ff
 
     tasks = [
         dict(Task="Diseño y prototipo", Start='2025-09-01', Finish='2025-09-05', Resource='MVP'),
         dict(Task="Funcionalidades básicas", Start='2025-09-08', Finish='2025-09-26', Resource='MVP'),
         dict(Task="Pruebas MVP", Start='2025-09-29', Finish='2025-10-03', Resource='MVP'),
         dict(Task="Lanzamiento MVP", Start='2025-10-06', Finish='2025-10-06', Resource='MVP'),
-
         dict(Task="Feedback usuarios", Start='2025-10-06', Finish='2025-10-17', Resource='Feedback'),
-
         dict(Task="Desarrollo ampliado", Start='2025-10-20', Finish='2025-11-07', Resource='Desarrollo'),
         dict(Task="Pruebas finales", Start='2025-11-10', Finish='2025-11-21', Resource='Desarrollo'),
         dict(Task="Lanzamiento final", Start='2025-11-24', Finish='2025-11-24', Resource='Desarrollo'),
