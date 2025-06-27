@@ -174,7 +174,7 @@ elif st.session_state.page == "desarrollo":
         st.write("A continuación se muestra un diagrama simplificado de la arquitectura propuesta:")
 
         diagram = gv.Digraph(format='png')
-        diagram.attr(rankdir='TB', size='8,5')
+        diagram.attr(rankdir='TB', size='12,8')
 
         diagram.node('App', '📱 App móvil\nFlutter (Android/iOS)', shape='box', style='filled', color='lightblue')
         diagram.node('API', '🌐 API Gateway', shape='box', style='filled', color='lightskyblue')
