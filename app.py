@@ -65,16 +65,16 @@ def nav_bar(current):
 
     with col3:
         if current == "resolucion":
-            st.markdown("**Resolución**")
+            st.markdown("**AXA Cuida Mi Mascota**")
         else:
-            if st.button(" Resolución", key=f"{current}_resolucion"):
+            if st.button("AXA Cuida Mi Mascota", key=f"{current}_resolucion"):
                 st.session_state.page = "resolucion"
 
     with col4:
         if current == "conclusiones":
-            st.markdown("**Conclusiones**")
+            st.markdown("**Presupuesto**")
         else:
-            if st.button(" Conclusiones", key=f"{current}_conclusiones"):
+            if st.button("Presupuesto", key=f"{current}_conclusiones"):
                 st.session_state.page = "conclusiones"
 
 
@@ -90,10 +90,10 @@ if st.session_state.page == "home":
             if st.button("Sobre mí", key="home_sobre_mi"):
                 st.session_state.page = "sobre_mi"
         with col_b:
-            if st.button("Resolución del caso", key="home_resolucion"):
+            if st.button("AXA Cuida Mi Mascota", key="home_resolucion"):
                 st.session_state.page = "resolucion"
         with col_c:
-            if st.button("Conclusiones", key="home_conclusiones"):
+            if st.button("Presupuesto", key="home_conclusiones"):
                 st.session_state.page = "conclusiones"
 
     with col2:
@@ -121,11 +121,11 @@ elif st.session_state.page == "sobre_mi":
 # RESOLUCIÓN
 elif st.session_state.page == "resolucion":
     nav_bar("resolucion")
-    st.write("###  Resolución del caso")
+    st.write("###  AXA Cuida Mi Mascota")
     st.write("Aquí puedes desarrollar tu análisis, mostrar gráficos, texto o resultados...")
 
 # CONCLUSIONES
 elif st.session_state.page == "conclusiones":
     nav_bar("conclusiones")
-    st.write("###  Conclusiones")
+    st.write("###Presupuesto")
     st.write("Aquí puedes cerrar tu presentación con los puntos clave o aprendizajes finales.")
