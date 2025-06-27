@@ -64,20 +64,18 @@ def nav_bar(current):
                 st.session_state.page = "sobre_mi"
 
     with col3:
-        if current == "resolucion":
-            st.markdown("**Resolución**")
+        if current == "aplicacion":
+            st.markdown("**Aplicación**")
         else:
-            if st.button(" Resolución", key=f"{current}_resolucion"):
-                st.session_state.page = "resolucion"
+            if st.button(" Aplicación", key=f"{current}_aplicacion"):
+                st.session_state.page = "aplicacion"
 
     with col4:
-        if current == "conclusiones":
-            st.markdown("**Conclusiones**")
+        if current == "presupuesto":
+            st.markdown("**Presupuesto**")
         else:
-            if st.button(" Conclusiones", key=f"{current}_conclusiones"):
-                st.session_state.page = "conclusiones"
-
-
+            if st.button(" Presupuesto", key=f"{current}_presupuesto"):
+                st.session_state.page = "presupuesto"
 
 # HOME
 if st.session_state.page == "home":
@@ -90,11 +88,11 @@ if st.session_state.page == "home":
             if st.button("Sobre mí", key="home_sobre_mi"):
                 st.session_state.page = "sobre_mi"
         with col_b:
-            if st.button("Resolución del caso", key="home_resolucion"):
-                st.session_state.page = "resolucion"
+            if st.button("Aplicación", key="home_aplicacion"):
+                st.session_state.page = "aplicacion"
         with col_c:
-            if st.button("Conclusiones", key="home_conclusiones"):
-                st.session_state.page = "conclusiones"
+            if st.button("Presupuesto", key="home_presupuesto"):
+                st.session_state.page = "presupuesto"
 
     with col2:
         st.image("images/logo.png", width=300)
@@ -103,7 +101,6 @@ if st.session_state.page == "home":
 elif st.session_state.page == "sobre_mi":
     nav_bar("sobre_mi")
     st.write("###  Soy Arabela Carceles, estudiante de Master en Business Analytics")
-    # Imagen centrada
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 1.2, 1])
     with col1:
@@ -116,16 +113,19 @@ elif st.session_state.page == "sobre_mi":
                 <li> <a href="https://github.com/arabelacarceles/" target="_blank">GitHub</a></li>
             </ul>
         """, unsafe_allow_html=True)
-    
 
-# RESOLUCIÓN
-elif st.session_state.page == "resolucion":
-    nav_bar("resolucion")
-    st.write("###  Resolución del caso")
-    st.write("Aquí puedes desarrollar tu análisis, mostrar gráficos, texto o resultados...")
+# APLICACIÓN
+elif st.session_state.page == "aplicacion":
+    nav_bar("aplicacion")
+    st.write("### Aplicación")
+    st.write("Aquí puedes interactuar con la demo de la app:")
 
-# CONCLUSIONES
-elif st.session_state.page == "conclusiones":
-    nav_bar("conclusiones")
-    st.write("###  Conclusiones")
-    st.write("Aquí puedes cerrar tu presentación con los puntos clave o aprendizajes finales.")
+    st.markdown("""
+    <iframe src="http://127.0.0.1:5000" width="375" height="667" style="border:none; border-radius:30px;"></iframe>
+    """, unsafe_allow_html=True)
+
+# PRESUPUESTO
+elif st.session_state.page == "presupuesto":
+    nav_bar("presupuesto")
+    st.write("### Presupuesto")
+    st.write("Aquí puedes cerrar tu presentación con los costes, riesgos y estimaciones.")
