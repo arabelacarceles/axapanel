@@ -1,8 +1,9 @@
-from flask import Flask, render_template_string, request, redirect, url_for, jsonify
+from flask import Flask, render_template_string, request, redirect, url_for, jsonify, session
 from datetime import datetime
 import random
 
 app = Flask(__name__)
+app.secret_key = "clave_super_secreta"
 
 citas = []
 puntos = 0
@@ -69,12 +70,12 @@ TEMPLATE_CLIENTE = """
   <div class="frame">
     <div class="modal" id="consejoModal">
       <div class="modal-content">
-        <span class="close-btn" onclick="cerrarModal('consejoModal')">❌</span>
+        <span class="close-btn" onclick="cerrarModal('consejoModal'); marcarPosponer();">❌</span>
         <h2>Tarea del día 🐾</h2>
         <p>{{ consejo }}</p>
         <div>
           <button onclick="marcarHecho()">✅ Hecho</button>
-          <button onclick="cerrarModal('consejoModal')">⏰ Posponer</button>
+          <button onclick="cerrarModal('consejoModal'); marcarPosponer();">⏰ Posponer</button>
         </div>
       </div>
     </div>
@@ -93,12 +94,14 @@ TEMPLATE_CLIENTE = """
       <div id='calendar'></div>
       <a href="{{ url_for('nueva_cita') }}"><button class="add-cita-btn">➕ Añadir cita</button></a>
     </div>
-    <img src="/static/perro.png" alt="Chatbot" class="chatbot-btn" onclick="alert('¡Hola! Soy tu asistente virtual 🐾')">
+    <img src="/static/chatbot.png" alt="Chatbot" class="chatbot-btn" onclick="alert('¡Hola! Soy tu asistente virtual 🐾')">
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      {% if show_popup %}
       document.getElementById('consejoModal').style.display = 'flex';
+      {% endif %}
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -132,6 +135,10 @@ TEMPLATE_CLIENTE = """
         document.getElementById('puntosModal').style.display='flex';
       });
     }
+
+    function marcarPosponer() {
+      fetch('/posponer');
+    }
   </script>
 </body></html>
 """
@@ -144,6 +151,7 @@ def home():
 def login():
     if request.method == "POST":
         usuario = request.form["usuario"]
+        session.clear()  # limpiar popups al iniciar sesión de nuevo
         return redirect(url_for("panel_cliente", usuario=usuario))
     return """
     <!doctype html><html><head>
@@ -171,14 +179,22 @@ def panel_cliente(usuario):
         "🐾 Asegúrate de que tu mascota tenga agua fresca."
     ]
     consejo = random.choice(consejos)
-    return render_template_string(TEMPLATE_CLIENTE, usuario=usuario_fmt, citas=citas, consejo=consejo)
+
+    show_popup = not session.get("popup_shown", False)
+    return render_template_string(TEMPLATE_CLIENTE, usuario=usuario_fmt, citas=citas, consejo=consejo, show_popup=show_popup)
 
 @app.route("/sumar_punto")
 def sumar_punto():
     global puntos
     puntos += 1
+    session["popup_shown"] = True
     faltan = max(0, 40 - puntos)
     return jsonify({"puntos": puntos, "faltan": faltan})
+
+@app.route("/posponer")
+def posponer():
+    session["popup_shown"] = True
+    return jsonify({"status": "ok"})
 
 @app.route("/nueva_cita", methods=["GET", "POST"])
 def nueva_cita():
