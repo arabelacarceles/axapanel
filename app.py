@@ -156,7 +156,7 @@ elif st.session_state.page == "desarrollo":
 
         with col2:
             st.markdown("###### 👉 Flujo 'Entrar como invitado'")
-            st.image("images/pagina principal.png", caption="Pantalla principal para invitado", width=200)
+            st.image("images/no usuario.png", caption="Pantalla principal para invitado", width=200)
             st.markdown("*El invitado accede a información básica, simuladores o contacto.*")
 
         st.markdown("""
@@ -192,9 +192,46 @@ elif st.session_state.page == "presupuesto":
     nav_bar("presupuesto")
     st.write("### Presupuesto y calendario de desarrollo")
 
+    st.markdown("""
+    #### 🔹 Estrategia de desarrollo
+
+    - Externalizar el desarrollo principal para agilizar plazos.
+    - Internalizar el mantenimiento y evolución tras el MVP.
+
+    #### 🔹 Costes estimados
+
+    - **Desarrollo:**
+        • Personal interno: 20,000 €
+        • Personal externo: 42,000 €
+        • Total desarrollo: 62,000 €
+
+    - **Infraestructura anual:**
+        • Servidor + BBDD: 7,000 €
+
+
+    #### 🔹 Equipo mínimo
+
+    - Internos: Project Manager, Solution Architect
+    - Externos: 2 desarrolladores móviles, diseñador UI/UX, QA Tester
+
+    #### 🔹 Recursos necesarios
+
+    - Ordenadores potentes, dispositivos Android/iOS, herramientas como Figma, Android Studio, Xcode y CI/CD (Jenkins, GitHub Actions).
+
+    #### 🔹 Principales riesgos y mitigaciones
+
+    - Integración APIs: mitigada con pruebas y documentación anticipada.
+    - Transferencia de conocimiento: handover planificado con formación.
+    - Seguridad y RGPD: autenticación biométrica, cifrado, NDA y políticas de privacidad.
+    - Baja adopción: mitigada con MVP para validar interés real.
+    - Cambios en requisitos: reuniones semanales con stakeholders.
+    """)
+
+    if st.button("💰 Calcular presupuesto final"):
+        st.success("✅ El coste total estimado del proyecto es de **69,000 €**")
+
     import plotly.figure_factory as ff
 
-    # Define las tareas
     tasks = [
         dict(Task="Diseño y prototipo", Start='2025-09-01', Finish='2025-09-05', Resource='MVP'),
         dict(Task="Funcionalidades básicas", Start='2025-09-08', Finish='2025-09-26', Resource='MVP'),
@@ -221,6 +258,5 @@ elif st.session_state.page == "presupuesto":
     st.plotly_chart(fig, use_container_width=True)
 
     st.write("""
-    **Total duración estimada del proyecto:**
-    - Desde el **1 de septiembre** hasta el **24 de noviembre de 2025** (12 semanas).
+    **Duración estimada:** del **1 sept 2025** al **24 nov 2025** (12 semanas).
     """)
