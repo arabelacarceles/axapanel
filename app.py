@@ -203,8 +203,10 @@ elif st.session_state.page == "aplicacion":
     st.write("### Aplicación")
     st.write("Aquí puedes interactuar con la demo de la app:")
     st.markdown("""
-    <iframe src="http://127.0.0.1:5000" width="375" height="667" style="border:none; border-radius:30px;"></iframe>
+    st.markdown("""
+    <iframe src="https://axapanel.onrender.com/login" width="375" height="667" style="border:none; border-radius:20px;"></iframe>
     """, unsafe_allow_html=True)
+
 
 # PRESUPUESTO
 elif st.session_state.page == "presupuesto":
